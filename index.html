@@ -16,21 +16,21 @@
     font-family:Poppins;
 }
 
-body, html {
+html, body {
     height:100%;
     background:#050816;
     color:white;
     overflow:hidden;
 }
 
-/* 🌊 BACKGROUND LIQUIDO /
+/ * 🌊 BACKGROUND LIQUIDO /
 .bg {
     position:fixed;
     width:100%;
     height:100%;
     background:
-    radial-gradient(circle at 20% 30%, rgba(47,108,255,0.35), transparent),
-    radial-gradient(circle at 80% 70%, rgba(0,200,255,0.25), transparent);
+        radial-gradient(circle at 20% 30%, rgba(47,108,255,0.35), transparent),
+        radial-gradient(circle at 80% 70%, rgba(0,200,255,0.25), transparent);
     filter:blur(90px);
     animation:move 12s infinite alternate ease-in-out;
     z-index:-1;
@@ -52,7 +52,7 @@ body, html {
     align-items:center;
 
     backdrop-filter:blur(20px);
-    background:rgba(47,108,255,0.6); / azzurro liquido /
+    background:rgba(47,108,255,0.6);
     border-bottom:1px solid rgba(0,200,255,0.6);
     box-shadow:0 8px 20px rgba(0,150,255,0.3);
     border-radius:0 0 15px 15px;
@@ -64,7 +64,6 @@ body, html {
     color:white;
 }
 
-/ 🔹 LINK PULITI /
 .navbar a,
 .navbar a:visited,
 .navbar a:active,
@@ -89,14 +88,14 @@ body, html {
     align-items:center;
     text-align:center;
     height:100vh;
+    gap:20px;
     padding:0 20px;
-    gap:15px;
 }
 
-/ LOGO ANIMATO /
+/ IMMAGINE RAPPRESENTATIVA DEL BOT /
 .hero img {
-    width:120px;
-    border-radius:12px;
+    width:160px;
+    border-radius:16px;
     animation:float 4s infinite ease-in-out;
 }
 
@@ -145,6 +144,7 @@ body, html {
 
 <div class="bg"></div>
 
+<!-- NAVBAR -->
 <div class="navbar">
     <h2>AmicoChill</h2>
     <div>
@@ -152,15 +152,16 @@ body, html {
     </div>
 </div>
 
+<!-- HERO -->
 <section class="hero">
-    <!-- METTI QUI IL FILE -->
-    <img src="logo.png" alt="Logo AmicoChill">
+    <!-- METTI QUI L’IMMAGINE RAPPRESENTATIVA DEL BOT -->
+    <img src="bot-image.png" alt="AmicoChill Bot">
 
     <h1>AmicoChill Bot</h1>
 
     <p>
         Bot Discord avanzato progettato per automatizzare, gestire e migliorare
-        il tuo server con funzioni moderne, semplici e personalizzabili.
+        qualsiasi server in modo semplice, veloce e completamente personalizzabile.
     </p>
 
     <button class="btn" onclick="inviteBot()">Invita il Bot</button>
