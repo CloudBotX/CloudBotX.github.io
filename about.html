@@ -4,13 +4,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>AmicoChill</title>
+<title>About - AmicoChill</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
-* {margin:0; padding:0; box-sizing:border-box; font-family:Poppins;}
-html, body {height:100%; background:#050816; color:white; overflow:hidden;}
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Poppins;
+}
+
+body {
+    background:#050816;
+    color:white;
+    min-height:100vh;
+}
 
 /* 🌊 BACKGROUND LIQUIDO /
 .bg {
@@ -24,9 +34,13 @@ html, body {height:100%; background:#050816; color:white; overflow:hidden;}
     animation:move 12s infinite alternate ease-in-out;
     z-index:-1;
 }
-@keyframes move {0% {transform:translateY(0);} 100% {transform:translateY(-60px);}}
 
-/ 💎 NAVBAR AZZURRA SOLIDA / LIQUID GLASS /
+@keyframes move {
+    0% {transform:translateY(0);}
+    100% {transform:translateY(-60px);}
+}
+
+/ 💎 NAVBAR AZZURRA LIQUID GLASS /
 .navbar {
     position:fixed;
     top:0;
@@ -35,9 +49,10 @@ html, body {height:100%; background:#050816; color:white; overflow:hidden;}
     display:flex;
     justify-content:space-between;
     align-items:center;
-    background:linear-gradient(135deg,#2f6cff,#00c6ff); / azzurro forte, sempre visibile /
-    border-bottom:2px solid #00c6ff;
-    box-shadow:0 5px 30px rgba(0,180,255,0.7);
+    backdrop-filter:blur(20px);
+    background:rgba(47,108,255,0.6);
+    border-bottom:1px solid rgba(0,200,255,0.6);
+    box-shadow:0 8px 20px rgba(0,150,255,0.3);
     border-radius:0 0 15px 15px;
     z-index:100;
 }
@@ -53,66 +68,58 @@ html, body {height:100%; background:#050816; color:white; overflow:hidden;}
 .navbar a:focus {
     color:white !important;
     text-decoration:none !important;
+    opacity:0.9;
     margin-left:20px;
     font-weight:500;
 }
 
 .navbar a:hover {
     opacity:1;
-    text-shadow:0 0 10px rgba(0,255,255,0.8);
+    text-shadow:0 0 8px rgba(0,255,255,0.6);
 }
 
-/ HERO CENTRATO /
-.hero {
+/ CONTAINER CONTENUTO /
+.container {
+    padding:120px 40px 60px 40px;
+    max-width:900px;
+    margin:auto;
+}
+
+/ TITOLO E TESTO /
+.container h2 {
+    font-size:40px;
+    margin-bottom:20px;
+}
+
+.container p {
+    line-height:1.6;
+    opacity:0.8;
+}
+
+/ CARDS LINGUAGGI */
+.cards {
+    margin-top:40px;
     display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    height:100vh;
+    flex-wrap:wrap;
     gap:20px;
-    padding:0 20px;
 }
 
-/ IMMAGINE RAPPRESENTATIVA DEL BOT /
-.hero img {
-    width:160px;
-    border-radius:16px;
-    animation:float 4s infinite ease-in-out;
-}
-@keyframes float {0%{transform:translateY(0);}50%{transform:translateY(-10px);}100%{transform:translateY(0);}}
-
-/ TESTO /
-.hero h1 {
-    font-size:65px;
-    color:white;
-    text-shadow:0 0 25px rgba(0,200,255,0.6);
-}
-.hero p {
-    max-width:520px;
-    opacity:0.75;
-}
-
-/ 🔵 BUTTON CENTRALE LIQUID BLUE */
-.btn {
-    margin-top:25px;
-    padding:18px 60px;
-    font-size:18px;
-    border:none;
-    border-radius:14px;
-    background:linear-gradient(135deg,#2f6cff,#00c6ff);
-    color:white;
-    cursor:pointer;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    box-shadow:0 0 60px rgba(0,180,255,0.7);
+.card {
+    flex:1 1 220px;
+    padding:25px;
+    border-radius:15px;
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,0.1);
     transition:0.3s;
+    text-align:center;
+    cursor:pointer;
+    font-weight:600;
 }
 
-.btn:hover {
-    transform:scale(1.1);
-    box-shadow:0 0 90px rgba(0,180,255,1);
+.card:hover {
+    transform:translateY(-10px) scale(1.05);
+    box-shadow:0 0 30px rgba(0,200,255,0.6);
 }
 </style>
 </head>
@@ -121,30 +128,30 @@ html, body {height:100%; background:#050816; color:white; overflow:hidden;}
 
 <div class="bg"></div>
 
-<!-- NAVBAR DEFINITIVA VISIBILE -->
+<!-- NAVBAR -->
 <div class="navbar">
     <h2>AmicoChill</h2>
     <div>
-        <a href="about.html">About</a>
+        <a href="index.html">Home</a>
     </div>
 </div>
 
-<!-- HERO -->
-<section class="hero">
-    <img src="bot-image.png" alt="AmicoChill Bot">
-    <h1>AmicoChill Bot</h1>
-    <p>
-        Bot Discord avanzato progettato per automatizzare, gestire e migliorare
-        qualsiasi server in modo semplice, veloce e completamente personalizzabile.
-    </p>
-    <button class="btn" onclick="inviteBot()">Invita il Bot</button>
-</section>
+<div class="container">
+    <h2>RagazzoChill_</h2>
 
-<script>
-function inviteBot() {
-    window.open("https://discord.com/oauth2/authorize?client_id=1479189696893419663&permissions=8&scope=bot+applications.commands");
-}
-</script>
+    <p>
+        Sviluppatore esperto nella creazione e configurazione di bot Discord.
+        Specializzato nello sviluppo di sistemi efficienti, moderni e altamente personalizzabili
+        utilizzando diversi linguaggi di programmazione. Sempre aggiornato sulle ultime tecnologie
+        e metodologie per fornire soluzioni performanti e stabili.
+    </p>
+
+    <div class="cards">
+        <div class="card">Java</div>
+        <div class="card">Skript</div>
+        <div class="card">Python</div>
+    </div>
+</div>
 
 </body>
 </html>
