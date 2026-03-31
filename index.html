@@ -9,21 +9,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
-* {
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Poppins;
-}
+* {margin:0; padding:0; box-sizing:border-box; font-family:Poppins;}
+html, body {height:100%; background:#050816; color:white; overflow:hidden;}
 
-html, body {
-    height:100%;
-    background:#050816;
-    color:white;
-    overflow:hidden;
-}
-
-/ * 🌊 BACKGROUND LIQUIDO /
+/* 🌊 BACKGROUND LIQUIDO /
 .bg {
     position:fixed;
     width:100%;
@@ -35,13 +24,9 @@ html, body {
     animation:move 12s infinite alternate ease-in-out;
     z-index:-1;
 }
+@keyframes move {0% {transform:translateY(0);} 100% {transform:translateY(-60px);}}
 
-@keyframes move {
-    0% {transform:translateY(0);}
-    100% {transform:translateY(-60px);}
-}
-
-/ 💎 NAVBAR AZZURRA LIQUID GLASS /
+/ 💎 NAVBAR AZZURRA SOLIDA / LIQUID GLASS /
 .navbar {
     position:fixed;
     top:0;
@@ -50,11 +35,9 @@ html, body {
     display:flex;
     justify-content:space-between;
     align-items:center;
-
-    backdrop-filter:blur(20px);
-    background:rgba(47,108,255,0.6);
-    border-bottom:1px solid rgba(0,200,255,0.6);
-    box-shadow:0 8px 20px rgba(0,150,255,0.3);
+    background:linear-gradient(135deg,#2f6cff,#00c6ff); / azzurro forte, sempre visibile /
+    border-bottom:2px solid #00c6ff;
+    box-shadow:0 5px 30px rgba(0,180,255,0.7);
     border-radius:0 0 15px 15px;
     z-index:100;
 }
@@ -70,14 +53,13 @@ html, body {
 .navbar a:focus {
     color:white !important;
     text-decoration:none !important;
-    opacity:0.9;
     margin-left:20px;
     font-weight:500;
 }
 
 .navbar a:hover {
     opacity:1;
-    text-shadow:0 0 8px rgba(0,255,255,0.6);
+    text-shadow:0 0 10px rgba(0,255,255,0.8);
 }
 
 / HERO CENTRATO /
@@ -98,25 +80,20 @@ html, body {
     border-radius:16px;
     animation:float 4s infinite ease-in-out;
 }
+@keyframes float {0%{transform:translateY(0);}50%{transform:translateY(-10px);}100%{transform:translateY(0);}}
 
-@keyframes float {
-    0% {transform:translateY(0);}
-    50% {transform:translateY(-10px);}
-    100% {transform:translateY(0);}
-}
-
+/ TESTO /
 .hero h1 {
     font-size:65px;
     color:white;
-    text-shadow:0 0 20px rgba(0,200,255,0.5);
+    text-shadow:0 0 25px rgba(0,200,255,0.6);
 }
-
 .hero p {
     max-width:520px;
     opacity:0.75;
 }
 
-/ 🔵 BUTTON CENTRALE */
+/ 🔵 BUTTON CENTRALE LIQUID BLUE */
 .btn {
     margin-top:25px;
     padding:18px 60px;
@@ -129,13 +106,13 @@ html, body {
     display:flex;
     justify-content:center;
     align-items:center;
-    box-shadow:0 0 50px rgba(0,180,255,0.7);
+    box-shadow:0 0 60px rgba(0,180,255,0.7);
     transition:0.3s;
 }
 
 .btn:hover {
     transform:scale(1.1);
-    box-shadow:0 0 80px rgba(0,180,255,1);
+    box-shadow:0 0 90px rgba(0,180,255,1);
 }
 </style>
 </head>
@@ -144,7 +121,7 @@ html, body {
 
 <div class="bg"></div>
 
-<!-- NAVBAR -->
+<!-- NAVBAR DEFINITIVA VISIBILE -->
 <div class="navbar">
     <h2>AmicoChill</h2>
     <div>
@@ -154,16 +131,12 @@ html, body {
 
 <!-- HERO -->
 <section class="hero">
-    <!-- METTI QUI L’IMMAGINE RAPPRESENTATIVA DEL BOT -->
     <img src="bot-image.png" alt="AmicoChill Bot">
-
     <h1>AmicoChill Bot</h1>
-
     <p>
         Bot Discord avanzato progettato per automatizzare, gestire e migliorare
         qualsiasi server in modo semplice, veloce e completamente personalizzabile.
     </p>
-
     <button class="btn" onclick="inviteBot()">Invita il Bot</button>
 </section>
 
