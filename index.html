@@ -6,12 +6,6 @@
 
 <title>AmicoChill</title>
 
-<meta property="og:title" content="AmicoChill Bot">
-<meta property="og:description" content="Un bot Discord moderno, veloce e potente.">
-<meta property="og:image" content="logo.png">
-<meta property="og:url" content="https://cloudbotx.github.io">
-<meta name="theme-color" content="#2f6cff">
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
@@ -28,7 +22,7 @@ body {
     overflow:hidden;
 }
 
-/* 🌊 BACKGROUND /
+/* 🌊 BACKGROUND LIQUIDO /
 .bg {
     position:fixed;
     width:100%;
@@ -46,7 +40,7 @@ body {
     100% {transform:translateY(-60px);}
 }
 
-/ 💎 NAVBAR FIX /
+/ 💎 NAVBAR SOLIDA /
 .navbar {
     position:fixed;
     top:0;
@@ -55,11 +49,9 @@ body {
     display:flex;
     justify-content:space-between;
     align-items:center;
-
     backdrop-filter:blur(18px);
-    background:rgba(5,10,30,0.85);
-    border-bottom:1px solid rgba(255,255,255,0.08);
-
+    background:rgba(5,10,30,0.95); / più opaca, visibile /
+    border-bottom:1px solid rgba(255,255,255,0.15);
     z-index:100;
 }
 
@@ -67,15 +59,17 @@ body {
     font-weight:600;
 }
 
-/ 🔥 FIX LINK /
+/ 🔹 LINK PULITI /
 .navbar a,
 .navbar a:visited,
-.navbar a:active {
-    color:white;
+.navbar a:active,
+.navbar a:focus {
+    color:white !important;
     text-decoration:none !important;
+    outline:none !important;
     border:none !important;
-    outline:none;
     opacity:0.85;
+    transition:0.2s;
 }
 
 .navbar a:hover {
@@ -91,23 +85,15 @@ body {
     align-items:center;
     text-align:center;
     gap:15px;
-
-    animation:fadeIn 1.2s ease;
 }
 
-/ fade /
-@keyframes fadeIn {
-    from {opacity:0; transform:translateY(20px);}
-    to {opacity:1; transform:translateY(0);}
-}
-
+/ IMMAGINE /
 .hero img {
-    width:110px;
+    width:120px;
     border-radius:12px;
     animation:float 4s infinite ease-in-out;
 }
 
-/ floating logo /
 @keyframes float {
     0% {transform:translateY(0);}
     50% {transform:translateY(-10px);}
@@ -123,7 +109,7 @@ body {
     opacity:0.75;
 }
 
-/ 🔵 BUTTON FIX */
+/ 🔵 BUTTON CENTRALE */
 .btn {
     margin-top:25px;
     padding:18px 60px;
@@ -133,11 +119,9 @@ body {
     background:linear-gradient(135deg,#2f6cff,#00c6ff);
     color:white;
     cursor:pointer;
-
     display:flex;
     justify-content:center;
     align-items:center;
-
     box-shadow:0 0 40px rgba(47,108,255,0.7);
     transition:0.3s;
 }
@@ -159,24 +143,18 @@ body {
 </div>
 
 <section class="hero">
-
-    <!-- METTI QUI IL FILE -->
-    <img src="logo.png">
-
+    <img src="logo.png" alt="Logo AmicoChill">
     <h1>AmicoChill Bot</h1>
-
     <p>
-        Un bot Discord avanzato progettato per automatizzare, gestire e migliorare
-        qualsiasi server in modo semplice, veloce e completamente personalizzabile.
+        Bot Discord avanzato progettato per automatizzare, gestire e migliorare
+        il tuo server con funzioni moderne, semplici e personalizzabili.
     </p>
-
     <button class="btn" onclick="inviteBot()">Invita il Bot</button>
-
 </section>
 
 <script>
 function inviteBot() {
-window.open("https://discord.com/oauth2/authorize?client_id=1479189696893419663&permissions=8&scope=bot+applications.commands");
+    window.open("https://discord.com/oauth2/authorize?client_id=1479189696893419663&permissions=8&scope=bot+applications.commands");
 }
 </script>
 
