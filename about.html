@@ -124,19 +124,26 @@ p.description {
 }
 .close-btn:hover {transform: scale(1.05);}
 
-/* Discord fissa */
-.discord-fixed {
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  font-size:3rem;
-  color:#7289da;
+/* Pulsante Discord */
+.discord-btn {
+  margin-top:30px;
+  padding:15px 40px;
+  font-size:1.3rem;
+  font-weight:bold;
+  color:#fff;
+  background: rgba(114,137,218,0.3);
+  backdrop-filter: blur(15px);
+  border-radius:15px;
+  border:1px solid rgba(255,255,255,0.3);
   cursor:pointer;
-  transition: transform 0.3s, text-shadow 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+  box-shadow:0 6px 20px rgba(0,0,0,0.2);
+  text-decoration:none;
 }
-.discord-fixed:hover {
-  transform: scale(1.3);
-  text-shadow: 0 0 15px #7289da, 0 0 25px #7289da;
+.discord-btn:hover {
+  transform: scale(1.05);
+  box-shadow:0 12px 25px rgba(0,0,0,0.3);
+  background: rgba(114,137,218,0.5);
 }
 
 /* Animazioni */
@@ -166,6 +173,9 @@ Ciao! Sono uno sviluppatore appassionato di bot Discord e creazione di texture. 
   <div class="lang-card" data-lang="css">CSS</div>
 </div>
 
+<!-- Pulsante Discord -->
+<a href="https://discord.gg/3VM4jbYk7Y" target="_blank" class="discord-btn">Entra nel Discord</a>
+
 <!-- Modale -->
 <div class="modal-bg" id="modal-bg">
   <div class="modal" id="modal">
@@ -174,9 +184,6 @@ Ciao! Sono uno sviluppatore appassionato di bot Discord e creazione di texture. 
     <button class="close-btn" id="close-btn">Chiudi</button>
   </div>
 </div>
-
-<!-- Discord fissa -->
-<a href="https://discord.gg/3VM4jbYk7Y" target="_blank" class="discord-fixed" title="Entra nel server Discord">💬</a>
 
 <script>
 const langInfo = {
