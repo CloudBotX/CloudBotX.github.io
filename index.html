@@ -1,40 +1,32 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <!-- Meta tag per embed Discord / social preview -->
-<meta property="og:title" content="AmicoChill Bot">
-<meta property="og:description" content="Un bot Discord creato per rendere le tue chat più divertenti e interattive!">
-<meta property="og:image" content="https://cloudbotx.github.io/2025-11-30_10.22.18.jpeg">
-<meta property="og:url" content="https://cloudbotx.github.io/index.html">
-<meta property="og:type" content="website">
-<meta property="theme-color" content="#3498db">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AmicoChill Bot</title>
+<title>AmicoChill - Invita il Bot</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 <style>
 * {margin:0;padding:0;box-sizing:border-box;font-family:'Montserrat',sans-serif;}
 body {
   background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  overflow:hidden;
   color:#fff;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
 }
 
 /* Navbar */
 nav {
-  position:absolute;
-  top:0;
   width:100%;
   display:flex;
   justify-content:space-between;
   padding:20px 40px;
   backdrop-filter:blur(10px);
   background: rgba(255,255,255,0.1);
-  animation: fadeIn 1s ease forwards;
+  position:absolute;
+  top:0;
 }
 nav a {
   color:#fff;
@@ -45,41 +37,106 @@ nav a {
 }
 nav a:hover {color:#ffd700;}
 
-/* Card principale */
-.card {
-  backdrop-filter: blur(20px);
-  background: rgba(255,255,255,0.1);
-  border-radius: 20px;
-  border: 1px solid rgba(255,255,255,0.3);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-  padding: 60px 40px;
-  text-align:center;
-  animation: float 6s ease-in-out infinite;
-  z-index:1;
-}
-.card h1 {font-size:3rem;margin-bottom:20px;}
-.card p {font-size:1.2rem;margin-bottom:30px;}
-
-/* Pulsante grande */
+/* Pulsante centrale */
 .invite-btn {
-  display:inline-block;
-  padding:20px 40px;
+  padding:20px 50px;
   font-size:1.5rem;
   font-weight:bold;
   color:#fff;
-  background: linear-gradient(135deg, #ff6ec4, #7873f5);
-  border:none;
-  border-radius:15px;
+  background: rgba(114,137,218,0.3);
+  backdrop-filter: blur(15px);
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,0.3);
   cursor:pointer;
-  text-decoration:none;
-  transition: transform 0.3s, box-shadow 0.3s;
-  box-shadow:0 8px 15px rgba(0,0,0,0.2);
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
 }
-.invite-btn:hover {transform:scale(1.05);box-shadow:0 12px 20px rgba(0,0,0,0.3);}
+.invite-btn:hover {
+  transform: scale(1.05);
+  box-shadow:0 12px 25px rgba(0,0,0,0.3);
+  background: rgba(114,137,218,0.5);
+}
 
-/* Animazioni */
-@keyframes float {0%,100%{transform:translateY(0);}50%{transform:translateY(-15px);}}
-@keyframes fadeIn {0%{opacity:0;transform:translateY(-20px);}100%{opacity:1;transform:translateY(0);}}
+/* Modale */
+.modal-bg {
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter:blur(5px);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:100;
+}
+.modal {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(20px);
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,0.3);
+  padding:30px;
+  max-width:400px;
+  text-align:center;
+  box-shadow:0 8px 32px rgba(0,0,0,0.2);
+  animation: modalPop 0.3s ease forwards;
+}
+.modal h2 {margin-bottom:15px;}
+.modal p {margin-bottom:20px; line-height:1.5;}
+.close-btn {
+  margin-top:15px;
+  padding:10px 20px;
+  border:none;
+  border-radius:10px;
+  background: linear-gradient(135deg, #ff6ec4, #7873f5);
+  color:#fff;
+  cursor:pointer;
+  font-weight:bold;
+  transition: transform 0.3s;
+}
+.close-btn:hover {transform: scale(1.05);}
+
+/* Checkbox finta reCAPTCHA */
+.fake-recaptcha {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:#fff;
+  color:#000;
+  border:1px solid #d3d3d3;
+  border-radius:5px;
+  padding:10px 10px 10px 5px;
+  cursor:pointer;
+  margin-bottom:20px;
+  user-select:none;
+  font-size:0.9rem;
+}
+.fake-recaptcha input {margin-right:10px; cursor:pointer;}
+.fake-recaptcha .logo {
+  width:70px; height:20px;
+  background: url('https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg') no-repeat center;
+  background-size: contain;
+}
+
+/* Pulsante Invita interno */
+.invite-submit {
+  padding:12px 25px;
+  font-size:1rem;
+  font-weight:bold;
+  color:#fff;
+  background: rgba(114,137,218,0.3);
+  backdrop-filter: blur(15px);
+  border-radius:15px;
+  border:1px solid rgba(255,255,255,0.3);
+  cursor:pointer;
+  transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
+}
+.invite-submit:hover:not(:disabled) {
+  transform: scale(1.05);
+  background: rgba(114,137,218,0.5);
+  box-shadow:0 12px 25px rgba(0,0,0,0.3);
+}
+.invite-submit:disabled {opacity:0.5; cursor:not-allowed;}
+
+@keyframes modalPop {0%{opacity:0; transform:scale(0.8);}100%{opacity:1; transform:scale(1);}}
 </style>
 </head>
 <body>
@@ -87,19 +144,54 @@ nav a:hover {color:#ffd700;}
 <nav>
   <div class="logo"><strong>AmicoChill</strong></div>
   <div class="nav-links">
-    <a href="about.html">About Me</a>
+    <a href="about.html">Chi Sono</a>
   </div>
 </nav>
 
-<div class="card">
-  <h1>AmicoChill Bot</h1>
-  <p>Un bot Discord creato per rendere le tue chat più divertenti e interattive. Animazioni, comandi utili e tanto altro!</p>
-  
-  <!-- Pulsante Invita Bot -->
-  <a class="invite-btn" href="https://discord.com/oauth2/authorize?client_id=1479189696893419663&permissions=8&integration_type=0&scope=bot+applications.commands" target="_blank">
-    Invita Bot
-  </a>
+<button class="invite-btn" id="invite-btn">Invita Bot</button>
+
+<!-- Modale -->
+<div class="modal-bg" id="modal-bg">
+  <div class="modal">
+    <h2>Invita AmicoChill</h2>
+    <p>Per invitare il bot devi accettare i termini e confermare di non essere un robot.</p>
+    <form id="invite-form">
+      <label class="fake-recaptcha">
+        <input type="checkbox" id="terms"> Accetto termini e privacy
+        <span class="logo"></span>
+      </label>
+      <button type="submit" class="invite-submit" id="invite-submit" disabled>Invita</button>
+    </form>
+    <button class="close-btn" id="close-btn">Chiudi</button>
+  </div>
 </div>
+
+<script>
+const inviteBtn = document.getElementById('invite-btn');
+const modalBg = document.getElementById('modal-bg');
+const closeBtn = document.getElementById('close-btn');
+const termsCheckbox = document.getElementById('terms');
+const submitBtn = document.getElementById('invite-submit');
+const inviteForm = document.getElementById('invite-form');
+
+// Mostra modale
+inviteBtn.addEventListener('click', () => { modalBg.style.display = 'flex'; });
+
+// Chiudi modale
+closeBtn.addEventListener('click', () => { modalBg.style.display = 'none'; });
+modalBg.addEventListener('click', e => { if(e.target === modalBg) modalBg.style.display = 'none'; });
+
+// Abilita pulsante se checkbox spuntata
+termsCheckbox.addEventListener('change', () => {
+  submitBtn.disabled = !termsCheckbox.checked;
+});
+
+// Invio form
+inviteForm.addEventListener('submit', e => {
+  e.preventDefault();
+  window.open("https://discord.com/oauth2/authorize?client_id=1479189696893419663&permissions=8&integration_type=0&scope=bot+applications.commands", "_blank");
+});
+</script>
 
 </body>
 </html>
