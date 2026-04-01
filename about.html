@@ -1,1 +1,112 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Me - AmicoChill</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+<style>
+* {margin:0;padding:0;box-sizing:border-box;font-family:'Montserrat',sans-serif;}
+body {
+  background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:#fff;
+}
 
+/* Navbar */
+nav {
+  position:absolute;
+  top:0;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  padding:20px 40px;
+  backdrop-filter:blur(10px);
+  background: rgba(255,255,255,0.1);
+}
+nav a {
+  color:#fff;
+  text-decoration:none;
+  margin-left:20px;
+  font-weight:600;
+  transition: color 0.3s;
+}
+nav a:hover {color:#ffd700;}
+
+/* Box About */
+.about {
+  backdrop-filter: blur(20px);
+  background: rgba(255,255,255,0.1);
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.3);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  padding: 40px;
+  max-width:500px;
+  text-align:center;
+  animation: float 6s ease-in-out infinite;
+}
+.about h2 {margin-bottom:20px;}
+.about p {margin-bottom:15px;}
+.about small {color:#ddd; display:block; margin-top:10px; font-size:0.9rem;}
+
+/* Embed stile Discord azzurro */
+.embed {
+  margin-top: 20px;
+  background-color: #3498db;
+  padding: 12px 15px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 1rem;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: background-color 0.3s, transform 0.2s;
+}
+.embed:hover {
+  background-color: #5dade2;
+  transform: translateY(-2px);
+}
+.embed a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 8px;
+  word-break: break-all;
+}
+.embed-icon {
+  font-size: 1.2rem;
+}
+
+/* Animazioni */
+@keyframes float {0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><strong>AmicoChill</strong></div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+  </div>
+</nav>
+
+<div class="about">
+  <h2>About Me</h2>
+  <p>Sono uno sviluppatore che crea texture e bot Discord.</p>
+  <p>Grazie al mio lavoro è nato <strong>AmicoChill</strong>.</p>
+  <small>Developer & Creator</small>
+
+  <!-- Embed per contatto o Discord del developer -->
+  <div class="embed">
+    <span class="embed-icon">💬</span>
+    <a href="https://discord.com/users/tuoIDDiscord" target="_blank">
+      Contatta il developer
+    </a>
+  </div>
+</div>
+
+</body>
+</html>
