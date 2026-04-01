@@ -3,23 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About Me - AmicoChill</title>
+<title>Chi Sono - AmicoChill</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 <style>
 * {margin:0;padding:0;box-sizing:border-box;font-family:'Montserrat',sans-serif;}
 body {
   background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
   color:#fff;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  overflow-x:hidden;
+  min-height:100vh;
 }
 
 /* Navbar */
 nav {
-  position:absolute;
-  top:0;
   width:100%;
   display:flex;
   justify-content:space-between;
@@ -36,52 +35,80 @@ nav a {
 }
 nav a:hover {color:#ffd700;}
 
-/* Box About */
-.about {
-  backdrop-filter: blur(20px);
-  background: rgba(255,255,255,0.1);
-  border-radius: 20px;
-  border: 1px solid rgba(255,255,255,0.3);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-  padding: 40px;
-  max-width:500px;
+/* Titolo pagina */
+h1 {
+  margin-top:60px;
+  font-size:3rem;
   text-align:center;
-  animation: float 6s ease-in-out infinite;
+  animation: fadeIn 1s ease forwards;
 }
-.about h2 {margin-bottom:20px;}
-.about p {margin-bottom:15px;}
-.about small {color:#ddd; display:block; margin-top:10px; font-size:0.9rem;}
 
-/* Embed stile Discord azzurro */
-.embed {
-  margin-top: 20px;
-  background-color: #3498db;
-  padding: 12px 15px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  font-size: 1rem;
-  color: #fff;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  transition: background-color 0.3s, transform 0.2s;
+/* Container card */
+.card-container {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin-top:40px;
+  gap:25px;
 }
-.embed:hover {
-  background-color: #5dade2;
-  transform: translateY(-2px);
+
+/* Card linguaggio */
+.lang-card {
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(15px);
+  border:1px solid rgba(255,255,255,0.3);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  cursor:pointer;
+  font-weight:bold;
+  font-size:1rem;
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+  box-shadow:0 6px 20px rgba(0,0,0,0.2);
+  animation: popIn 0.8s ease forwards;
 }
-.embed a {
-  color: #fff;
-  text-decoration: none;
-  margin-left: 8px;
-  word-break: break-all;
+.lang-card:hover {
+  transform: translateY(-15px) scale(1.1) rotate(3deg);
+  box-shadow:0 12px 25px rgba(0,0,0,0.3);
+  background: rgba(255,255,255,0.2);
 }
-.embed-icon {
-  font-size: 1.2rem;
+
+/* Info linguaggio */
+.lang-info {
+  margin-top:20px;
+  max-width:600px;
+  text-align:center;
+  padding:20px;
+  background: rgba(255,255,255,0.1);
+  border-radius:15px;
+  border:1px solid rgba(255,255,255,0.3);
+  backdrop-filter:blur(15px);
+  display:none;
+  animation: fadeInInfo 0.5s ease forwards;
+}
+.lang-info.active {display:block;}
+
+/* Discord icon */
+.discord-link {
+  margin-top:40px;
+  font-size:3rem;
+  text-decoration:none;
+  color:#fff;
+  transition: transform 0.3s, text-shadow 0.3s;
+}
+.discord-link:hover {
+  transform: scale(1.3);
+  text-shadow: 0 0 15px #7289da, 0 0 25px #7289da;
 }
 
 /* Animazioni */
-@keyframes float {0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+@keyframes fadeIn {0%{opacity:0;transform:translateY(-20px);}100%{opacity:1;transform:translateY(0);}}
+@keyframes popIn {0%{opacity:0; transform: scale(0.5) translateY(20px);}100%{opacity:1; transform: scale(1) translateY(0);}}
+@keyframes fadeInInfo {0%{opacity:0; transform:translateY(10px);}100%{opacity:1; transform:translateY(0);}}
 </style>
 </head>
 <body>
@@ -93,20 +120,60 @@ nav a:hover {color:#ffd700;}
   </div>
 </nav>
 
-<div class="about">
-  <h2>About Me</h2>
-  <p>Sono uno sviluppatore che crea texture e bot Discord.</p>
-  <p>Grazie al mio lavoro è nato <strong>AmicoChill</strong>.</p>
-  <small>Developer & Creator</small>
+<h1>Chi Sono</h1>
 
-  <!-- Embed per contatto o Discord del developer -->
-  <div class="embed">
-    <span class="embed-icon">💬</span>
-    <a href="https://discord.gg/3VM4jbYk7Y" target="_blank">
-      Entra Nel Discord
-    </a>
-  </div>
+<div class="card-container">
+  <div class="lang-card" data-lang="python">Python</div>
+  <div class="lang-card" data-lang="java">Java</div>
+  <div class="lang-card" data-lang="javascript">JavaScript</div>
+  <div class="lang-card" data-lang="html">HTML</div>
+  <div class="lang-card" data-lang="css">CSS</div>
 </div>
+
+<!-- Info dettagliate -->
+<div id="info-python" class="lang-info">
+  <h2>Python</h2>
+  <p>Uso Python principalmente per bot Discord, automazioni e script vari. La sua sintassi chiara e la facilità di sviluppo lo rendono perfetto per prototipi veloci.</p>
+</div>
+
+<div id="info-java" class="lang-info">
+  <h2>Java</h2>
+  <p>Java è ideale per applicazioni robuste e scalabili. Lo utilizzo in progetti server-side e per creare programmi con architetture più complesse.</p>
+</div>
+
+<div id="info-javascript" class="lang-info">
+  <h2>JavaScript</h2>
+  <p>JavaScript è il cuore dell’interattività web. Lo uso per animazioni, effetti dinamici e per rendere i miei siti moderni e responsive.</p>
+</div>
+
+<div id="info-html" class="lang-info">
+  <h2>HTML</h2>
+  <p>HTML è la struttura base dei miei siti. Lo combino con CSS e JS per creare interfacce eleganti, intuitive e compatibili con tutti i dispositivi.</p>
+</div>
+
+<div id="info-css" class="lang-info">
+  <h2>CSS</h2>
+  <p>CSS dà vita ai miei progetti. Uso gradienti, blur, animazioni e effetti liquid glass per rendere le pagine moderne e accattivanti.</p>
+</div>
+
+<!-- Discord server link -->
+<a class="discord-link" href="https://discord.gg/3VM4jbYk7Y" target="_blank" title="Entra nel server Discord">
+  💬
+</a>
+
+<script>
+// Mostra info al click
+const cards = document.querySelectorAll('.lang-card');
+cards.forEach(card => {
+  card.addEventListener('click', () => {
+    // Nascondi tutte le info
+    document.querySelectorAll('.lang-info').forEach(info => info.classList.remove('active'));
+    // Mostra info cliccata
+    const lang = card.dataset.lang;
+    document.getElementById('info-' + lang).classList.add('active');
+  });
+});
+</script>
 
 </body>
 </html>
