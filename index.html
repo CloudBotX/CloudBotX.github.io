@@ -70,26 +70,36 @@ nav a:hover {color:#ffd700;}
 }
 .invite-btn:hover {transform:scale(1.05);box-shadow:0 12px 20px rgba(0,0,0,0.3);}
 
-/* Sezione About piccola, flottante */
-.about {
-  position:absolute;
-  bottom:30px;
-  right:30px;
-  backdrop-filter: blur(15px);
-  background: rgba(255,255,255,0.1);
-  border-radius:15px;
-  border:1px solid rgba(255,255,255,0.3);
-  padding:20px 30px;
-  max-width:250px;
-  text-align:center;
-  animation: floatSmall 4s ease-in-out infinite;
-  font-size:0.95rem;
+/* Embed stile Discord azzurro */
+.embed {
+  margin-top: 20px;
+  background-color: #3498db;
+  padding: 12px 15px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 1rem;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: background-color 0.3s, transform 0.2s;
 }
-.about small {display:block;margin-top:5px;color:#ddd;}
+.embed:hover {
+  background-color: #5dade2;
+  transform: translateY(-2px);
+}
+.embed a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 8px;
+  word-break: break-all;
+}
+.embed-icon {
+  font-size: 1.2rem;
+}
 
 /* Animazioni */
 @keyframes float {0%,100%{transform:translateY(0);}50%{transform:translateY(-15px);}}
-@keyframes floatSmall {0%,100%{transform:translateY(0);}50%{transform:translateY(-7px);}}
 @keyframes fadeIn {0%{opacity:0;transform:translateY(-20px);}100%{opacity:1;transform:translateY(0);}}
 </style>
 </head>
@@ -98,21 +108,26 @@ nav a:hover {color:#ffd700;}
 <nav>
   <div class="logo"><strong>AmicoChill</strong></div>
   <div class="nav-links">
-    <a href="#invite">Invita Bot</a>
-    <a href="#about">About Me</a>
+    <a href="about.html">About Me</a>
   </div>
 </nav>
 
-<div class="card" id="invite">
+<div class="card">
   <h1>AmicoChill Bot</h1>
   <p>Un bot Discord creato per rendere le tue chat più divertenti e interattive. Animazioni, comandi utili e tanto altro!</p>
-  <a class="invite-btn" href="LINK_DI_INVITO_DEL_BOT" target="_blank">Invita Bot</a>
-</div>
+  
+  <!-- Pulsante Invita Bot -->
+  <a class="invite-btn" href="https://discord.com/oauth2/authorize?client_id=1479189696893419663&permissions=8&integration_type=0&scope=bot+applications.commands" target="_blank">
+    Invita Bot
+  </a>
 
-<div class="about" id="about">
-  <h3>About Me</h3>
-  <p>Sviluppo texture e bot Discord. Grazie al mio lavoro è nato <strong>AmicoChill</strong>.</p>
-  <small>Developer & Creator</small>
+  <!-- Embed link azzurro -->
+  <div class="embed">
+    <span class="embed-icon">🔗</span>
+    <a href="https://discord.com/oauth2/authorize?client_id=1479189696893419663&permissions=8&integration_type=0&scope=bot+applications.commands" target="_blank">
+      https://discord.com/oauth2/authorize?client_id=1479189696893419663&permissions=8&integration_type=0&scope=bot+applications.commands
+    </a>
+  </div>
 </div>
 
 </body>
