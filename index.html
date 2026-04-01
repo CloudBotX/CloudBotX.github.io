@@ -3,57 +3,71 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AmicoChill - Invita il Bot</title>
+<title>AmicoChill Bot</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 <style>
 * {margin:0;padding:0;box-sizing:border-box;font-family:'Montserrat',sans-serif;}
+
 body {
   background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
-  color:#fff;
-  min-height:100vh;
+  height:100vh;
   display:flex;
-  flex-direction:column;
-  align-items:center;
   justify-content:center;
+  align-items:center;
+  color:#fff;
+  overflow:hidden;
 }
 
 /* Navbar */
 nav {
+  position:absolute;
+  top:0;
   width:100%;
   display:flex;
   justify-content:space-between;
   padding:20px 40px;
   backdrop-filter:blur(10px);
   background: rgba(255,255,255,0.1);
-  position:absolute;
-  top:0;
 }
 nav a {
   color:#fff;
   text-decoration:none;
   margin-left:20px;
   font-weight:600;
-  transition: color 0.3s;
 }
 nav a:hover {color:#ffd700;}
 
-/* Pulsante centrale */
+/* Card */
+.card {
+  backdrop-filter: blur(20px);
+  background: rgba(255,255,255,0.1);
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.3);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  padding: 60px 40px;
+  text-align:center;
+  animation: float 6s ease-in-out infinite;
+}
+
+.card h1 {font-size:3rem;margin-bottom:20px;}
+.card p {font-size:1.2rem;margin-bottom:30px;}
+
+/* Bottone */
 .invite-btn {
-  padding:20px 50px;
+  padding:20px 40px;
   font-size:1.5rem;
   font-weight:bold;
   color:#fff;
-  background: rgba(114,137,218,0.3);
-  backdrop-filter: blur(15px);
-  border-radius:20px;
-  border:1px solid rgba(255,255,255,0.3);
+  background: linear-gradient(135deg, #ff6ec4, #7873f5);
+  border:none;
+  border-radius:15px;
   cursor:pointer;
-  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow:0 8px 15px rgba(0,0,0,0.2);
 }
 .invite-btn:hover {
   transform: scale(1.05);
-  box-shadow:0 12px 25px rgba(0,0,0,0.3);
-  background: rgba(114,137,218,0.5);
+  box-shadow:0 12px 20px rgba(0,0,0,0.3);
 }
 
 /* Modale */
@@ -66,131 +80,90 @@ nav a:hover {color:#ffd700;}
   display:none;
   justify-content:center;
   align-items:center;
-  z-index:100;
 }
+
 .modal {
   background: rgba(255,255,255,0.1);
   backdrop-filter: blur(20px);
   border-radius:20px;
   border:1px solid rgba(255,255,255,0.3);
   padding:30px;
-  max-width:400px;
+  max-width:350px;
   text-align:center;
-  box-shadow:0 8px 32px rgba(0,0,0,0.2);
-  animation: modalPop 0.3s ease forwards;
+  animation: pop 0.3s ease;
 }
+
 .modal h2 {margin-bottom:15px;}
-.modal p {margin-bottom:20px; line-height:1.5;}
-.close-btn {
-  margin-top:15px;
+.modal label {display:block;margin:20px 0;}
+.modal button {
+  margin-top:10px;
   padding:10px 20px;
   border:none;
   border-radius:10px;
   background: linear-gradient(135deg, #ff6ec4, #7873f5);
   color:#fff;
   cursor:pointer;
-  font-weight:bold;
-  transition: transform 0.3s;
 }
-.close-btn:hover {transform: scale(1.05);}
+.modal button:disabled {opacity:0.5;cursor:not-allowed;}
 
-/* Checkbox finta reCAPTCHA */
-.fake-recaptcha {
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  background:#fff;
-  color:#000;
-  border:1px solid #d3d3d3;
-  border-radius:5px;
-  padding:10px 10px 10px 5px;
-  cursor:pointer;
-  margin-bottom:20px;
-  user-select:none;
-  font-size:0.9rem;
+/* Animazioni */
+@keyframes float {
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-15px);}
 }
-.fake-recaptcha input {margin-right:10px; cursor:pointer;}
-.fake-recaptcha .logo {
-  width:70px; height:20px;
-  background: url('https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg') no-repeat center;
-  background-size: contain;
+@keyframes pop {
+  0%{transform:scale(0.8);opacity:0;}
+  100%{transform:scale(1);opacity:1;}
 }
-
-/* Pulsante Invita interno */
-.invite-submit {
-  padding:12px 25px;
-  font-size:1rem;
-  font-weight:bold;
-  color:#fff;
-  background: rgba(114,137,218,0.3);
-  backdrop-filter: blur(15px);
-  border-radius:15px;
-  border:1px solid rgba(255,255,255,0.3);
-  cursor:pointer;
-  transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
-}
-.invite-submit:hover:not(:disabled) {
-  transform: scale(1.05);
-  background: rgba(114,137,218,0.5);
-  box-shadow:0 12px 25px rgba(0,0,0,0.3);
-}
-.invite-submit:disabled {opacity:0.5; cursor:not-allowed;}
-
-@keyframes modalPop {0%{opacity:0; transform:scale(0.8);}100%{opacity:1; transform:scale(1);}}
 </style>
 </head>
 <body>
 
 <nav>
-  <div class="logo"><strong>AmicoChill</strong></div>
-  <div class="nav-links">
+  <div><strong>AmicoChill</strong></div>
+  <div>
     <a href="about.html">Chi Sono</a>
   </div>
 </nav>
 
-<button class="invite-btn" id="invite-btn">Invita Bot</button>
+<div class="card">
+  <h1>AmicoChill Bot</h1>
+  <p>Un bot Discord creato per rendere le tue chat più divertenti e interattive.</p>
+  <button class="invite-btn" id="open">Invita Bot</button>
+</div>
 
-<!-- Modale -->
-<div class="modal-bg" id="modal-bg">
+<!-- MODALE -->
+<div class="modal-bg" id="modal">
   <div class="modal">
-    <h2>Invita AmicoChill</h2>
-    <p>Per invitare il bot devi accettare i termini e confermare di non essere un robot.</p>
-    <form id="invite-form">
-      <label class="fake-recaptcha">
-        <input type="checkbox" id="terms"> Accetto termini e privacy
-        <span class="logo"></span>
-      </label>
-      <button type="submit" class="invite-submit" id="invite-submit" disabled>Invita</button>
-    </form>
-    <button class="close-btn" id="close-btn">Chiudi</button>
+    <h2>Invita il Bot</h2>
+    <p>Per continuare devi accettare i termini e la privacy.</p>
+    
+    <label>
+      <input type="checkbox" id="check"> Accetto termini e privacy
+    </label>
+
+    <button id="invite" disabled>Continua</button>
   </div>
 </div>
 
 <script>
-const inviteBtn = document.getElementById('invite-btn');
-const modalBg = document.getElementById('modal-bg');
-const closeBtn = document.getElementById('close-btn');
-const termsCheckbox = document.getElementById('terms');
-const submitBtn = document.getElementById('invite-submit');
-const inviteForm = document.getElementById('invite-form');
+const modal = document.getElementById('modal');
+const open = document.getElementById('open');
+const check = document.getElementById('check');
+const invite = document.getElementById('invite');
 
-// Mostra modale
-inviteBtn.addEventListener('click', () => { modalBg.style.display = 'flex'; });
+// Apri popup
+open.onclick = () => modal.style.display = "flex";
 
-// Chiudi modale
-closeBtn.addEventListener('click', () => { modalBg.style.display = 'none'; });
-modalBg.addEventListener('click', e => { if(e.target === modalBg) modalBg.style.display = 'none'; });
+// Abilita bottone
+check.onchange = () => {
+  invite.disabled = !check.checked;
+};
 
-// Abilita pulsante se checkbox spuntata
-termsCheckbox.addEventListener('change', () => {
-  submitBtn.disabled = !termsCheckbox.checked;
-});
-
-// Invio form
-inviteForm.addEventListener('submit', e => {
-  e.preventDefault();
+// Invito bot
+invite.onclick = () => {
   window.open("https://discord.com/oauth2/authorize?client_id=1479189696893419663&permissions=8&integration_type=0&scope=bot+applications.commands", "_blank");
-});
+};
 </script>
 
 </body>
