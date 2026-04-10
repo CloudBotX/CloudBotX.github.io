@@ -5,8 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Chi Sono - AmicoChill</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
 * {margin:0;padding:0;box-sizing:border-box;font-family:'Montserrat',sans-serif;}
+
 body {
   background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
   color:#fff;
@@ -18,6 +20,55 @@ body {
   overflow-x:hidden;
 }
 
+/* 🌊 LUCI FLUIDE */
+body::before, body::after {
+  content:"";
+  position:absolute;
+  width:500px;
+  height:500px;
+  border-radius:50%;
+  filter:blur(120px);
+  opacity:0.5;
+  animation: floatLight 10s infinite alternate ease-in-out;
+  z-index:0;
+}
+
+body::before {
+  background:#ff6ec4;
+  top:10%;
+  left:10%;
+}
+
+body::after {
+  background:#7873f5;
+  bottom:10%;
+  right:10%;
+  animation-delay:2s;
+}
+
+@keyframes floatLight {
+  0% {transform:translate(0,0);}
+  100% {transform:translate(40px,-40px);}
+}
+
+/* ✨ PARTICELLE */
+.particle {
+  position:absolute;
+  width:6px;
+  height:6px;
+  background:white;
+  border-radius:50%;
+  opacity:0;
+  animation: sparkle 6s infinite;
+  z-index:0;
+}
+
+@keyframes sparkle {
+  0% {opacity:0; transform:translateY(0);}
+  50% {opacity:0.8;}
+  100% {opacity:0; transform:translateY(-100px);}
+}
+
 /* Navbar */
 nav {
   width:100%;
@@ -26,7 +77,10 @@ nav {
   padding:20px 40px;
   backdrop-filter:blur(10px);
   background: rgba(255,255,255,0.1);
+  position:relative;
+  z-index:2;
 }
+
 nav a {
   color:#fff;
   text-decoration:none;
@@ -36,13 +90,15 @@ nav a {
 }
 nav a:hover {color:#ffd700;}
 
-/* Titolo e descrizione */
+/* Titolo */
 h1 {
   margin-top:60px;
   font-size:3rem;
   text-align:center;
   animation: fadeIn 1s ease forwards;
+  z-index:2;
 }
+
 p.description {
   margin-top:20px;
   max-width:800px;
@@ -50,15 +106,17 @@ p.description {
   font-size:1.2rem;
   line-height:1.6;
   animation: fadeIn 1.2s ease forwards;
+  z-index:2;
 }
 
-/* Sezione linguaggi */
+/* Cards */
 .lang-container {
   display:flex;
   flex-wrap:wrap;
   justify-content:center;
   gap:25px;
   margin-top:40px;
+  z-index:2;
 }
 
 .lang-card {
@@ -71,60 +129,17 @@ p.description {
   display:flex;
   justify-content:center;
   align-items:center;
-  text-align:center;
   cursor:pointer;
   font-weight:bold;
-  font-size:1.1rem;
-  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
-  box-shadow:0 6px 20px rgba(0,0,0,0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
+
 .lang-card:hover {
   transform: translateY(-10px) scale(1.05);
   box-shadow:0 12px 25px rgba(0,0,0,0.3);
-  background: rgba(255,255,255,0.2);
 }
 
-/* Modale popup */
-.modal-bg {
-  position:fixed;
-  top:0; left:0;
-  width:100%; height:100%;
-  background: rgba(0,0,0,0.4);
-  backdrop-filter:blur(5px);
-  display:none;
-  justify-content:center;
-  align-items:center;
-  z-index:100;
-}
-.modal {
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(20px);
-  border-radius:20px;
-  border:1px solid rgba(255,255,255,0.3);
-  padding:30px;
-  max-width:400px;
-  text-align:center;
-  box-shadow:0 8px 32px rgba(0,0,0,0.2);
-  animation: modalPop 0.3s ease forwards;
-}
-.modal h2 {
-  margin-bottom:15px;
-}
-.modal p {line-height:1.5;}
-.close-btn {
-  margin-top:20px;
-  padding:10px 20px;
-  border:none;
-  border-radius:10px;
-  background: linear-gradient(135deg, #ff6ec4, #7873f5);
-  color:#fff;
-  cursor:pointer;
-  font-weight:bold;
-  transition: transform 0.3s;
-}
-.close-btn:hover {transform: scale(1.05);}
-
-/* Pulsante Discord */
+/* Discord */
 .discord-btn {
   margin-top:30px;
   padding:15px 40px;
@@ -136,31 +151,68 @@ p.description {
   border-radius:15px;
   border:1px solid rgba(255,255,255,0.3);
   cursor:pointer;
-  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
-  box-shadow:0 6px 20px rgba(0,0,0,0.2);
   text-decoration:none;
+  z-index:2;
 }
-.discord-btn:hover {
-  transform: scale(1.05);
-  box-shadow:0 12px 25px rgba(0,0,0,0.3);
-  background: rgba(114,137,218,0.5);
+
+/* Modal */
+.modal-bg {
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:100;
+}
+
+.modal {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(20px);
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,0.3);
+  padding:30px;
+  text-align:center;
 }
 
 /* Animazioni */
-@keyframes fadeIn {0%{opacity:0; transform:translateY(-20px);}100%{opacity:1; transform:translateY(0);}}
-@keyframes modalPop {0%{opacity:0; transform:scale(0.8);}100%{opacity:1; transform:scale(1);}}
+@keyframes fadeIn {
+  from {opacity:0; transform:translateY(-20px);}
+  to {opacity:1; transform:translateY(0);}
+}
+
+/* 📱 MOBILE */
+@media (max-width:768px){
+  h1 {font-size:2rem;}
+  .lang-card {width:120px;height:70px;}
+}
+
 </style>
 </head>
+
 <body>
 
+<!-- PARTICELLE -->
+<script>
+for(let i=0;i<40;i++){
+  let p=document.createElement("div");
+  p.className="particle";
+  p.style.left=Math.random()*100+"%";
+  p.style.top=Math.random()*100+"%";
+  p.style.animationDelay=Math.random()*6+"s";
+  document.body.appendChild(p);
+}
+</script>
+
 <nav>
-  <div class="logo"><strong>AmicoChill</strong></div>
-  <div class="nav-links">
+  <div><strong>AmicoChill</strong></div>
+  <div>
     <a href="index.html">Home</a>
   </div>
 </nav>
 
 <h1>Chi Sono</h1>
+
 <p class="description">
 Ciao! Sono uno sviluppatore appassionato di bot Discord e creazione di texture. Amo sperimentare con il design moderno, animazioni e interfacce interattive. Grazie al mio lavoro è nato il bot <strong>AmicoChill</strong>, progettato per rendere le chat più divertenti e dinamiche.
 </p>
@@ -173,48 +225,49 @@ Ciao! Sono uno sviluppatore appassionato di bot Discord e creazione di texture. 
   <div class="lang-card" data-lang="css">CSS</div>
 </div>
 
-<!-- Pulsante Discord -->
-<a href="https://discord.gg/3VM4jbYk7Y" target="_blank" class="discord-btn">Entra nel Discord</a>
+<a href="https://discord.gg/3VM4jbYk7Y" target="_blank" rel="noopener noreferrer" class="discord-btn">
+  Entra nel Discord
+</a>
 
-<!-- Modale -->
+<!-- MODAL -->
 <div class="modal-bg" id="modal-bg">
-  <div class="modal" id="modal">
+  <div class="modal">
     <h2 id="modal-title"></h2>
     <p id="modal-desc"></p>
-    <button class="close-btn" id="close-btn">Chiudi</button>
+    <button onclick="closeModal()">Chiudi</button>
   </div>
 </div>
 
 <script>
 const langInfo = {
-  python: {title:"Python", desc:"Uso Python principalmente per bot Discord, automazioni e script. La sua sintassi chiara permette sviluppo rapido di prototipi e bot interattivi."},
-  java: {title:"Java", desc:"Java è perfetto per applicazioni robuste e scalabili. Lo utilizzo in progetti server-side e programmi più complessi."},
-  javascript: {title:"JavaScript", desc:"JavaScript è il cuore dell’interattività web. Lo uso per animazioni, effetti dinamici e interazioni moderne sui siti."},
-  html: {title:"HTML", desc:"HTML è la struttura base dei miei siti, combinato con CSS e JS per creare interfacce responsive e moderne."},
-  css: {title:"CSS", desc:"CSS dà vita ai miei progetti: gradienti, blur, animazioni e liquid glass per un design elegante e accattivante."}
+  python: {title:"Python", desc:"Uso Python principalmente per bot Discord, automazioni e script."},
+  java: {title:"Java", desc:"Java è perfetto per applicazioni robuste e scalabili."},
+  javascript: {title:"JavaScript", desc:"JavaScript è il cuore dell’interattività web."},
+  html: {title:"HTML", desc:"HTML è la struttura base dei miei siti."},
+  css: {title:"CSS", desc:"CSS dà vita ai miei progetti con design moderni."}
 };
 
 const cards = document.querySelectorAll('.lang-card');
 const modalBg = document.getElementById('modal-bg');
 const modalTitle = document.getElementById('modal-title');
 const modalDesc = document.getElementById('modal-desc');
-const closeBtn = document.getElementById('close-btn');
 
 cards.forEach(card => {
-  card.addEventListener('click', () => {
+  card.onclick = () => {
     const lang = card.dataset.lang;
     modalTitle.textContent = langInfo[lang].title;
     modalDesc.textContent = langInfo[lang].desc;
     modalBg.style.display = 'flex';
-  });
+  };
 });
 
-closeBtn.addEventListener('click', () => {
+function closeModal(){
   modalBg.style.display = 'none';
-});
-modalBg.addEventListener('click', e => {
-  if(e.target === modalBg) modalBg.style.display = 'none';
-});
+}
+
+modalBg.onclick = (e) => {
+  if(e.target === modalBg) closeModal();
+};
 </script>
 
 </body>
