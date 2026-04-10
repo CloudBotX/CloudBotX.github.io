@@ -3,14 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>AmicoChill Bot</title>
+
+<!-- 🔥 META OG (EMBED DISCORD) -->
+<meta property="og:title" content="AmicoChill Bot">
+<meta property="og:description" content="Il bot Discord perfetto per rendere le chat più divertenti e interattive.">
+<meta property="og:image" content="https://i.imgur.com/7yUvePI.png">
+<meta property="og:url" content="https://tuosito.it">
+<meta name="theme-color" content="#4da6ff">
+
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Montserrat',sans-serif;}
 
 body{
-  background: linear-gradient(135deg,#a1c4fd,#c2e9fb);
+  background:linear-gradient(135deg,#a1c4fd,#c2e9fb);
   height:100vh;
   display:flex;
   justify-content:center;
@@ -20,7 +29,28 @@ body{
   position:relative;
 }
 
-/* LUCI */
+/* 🌊 ONDE SVG */
+.wave{
+  position:absolute;
+  bottom:0;
+  width:200%;
+  height:200px;
+  background: url('https://svgshare.com/i/uYb.svg') repeat-x;
+  animation: waveMove 10s linear infinite;
+  opacity:0.3;
+}
+
+.wave2{
+  animation-duration:15s;
+  opacity:0.2;
+}
+
+@keyframes waveMove{
+  from{transform:translateX(0);}
+  to{transform:translateX(-50%);}
+}
+
+/* ✨ LUCI */
 body::before,body::after{
   content:"";
   position:absolute;
@@ -28,15 +58,10 @@ body::before,body::after{
   border-radius:50%;
   filter:blur(120px);
   opacity:0.5;
-  animation:move 10s infinite alternate ease-in-out;
+  animation:move 10s infinite alternate;
 }
 body::before{background:#ff6ec4;top:10%;left:10%;}
-body::after{background:#7873f5;bottom:10%;right:10%;animation-delay:2s;}
-
-@keyframes move{
-  from{transform:translate(0,0);}
-  to{transform:translate(40px,-40px);}
-}
+body::after{background:#7873f5;bottom:10%;right:10%;}
 
 /* PARTICELLE */
 .particle{
@@ -47,6 +72,7 @@ body::after{background:#7873f5;bottom:10%;right:10%;animation-delay:2s;}
   opacity:0;
   animation:float 6s infinite;
 }
+
 @keyframes float{
   0%{opacity:0;}
   50%{opacity:0.8;}
@@ -65,7 +91,15 @@ nav{
   z-index:2;
 }
 
-nav a{color:#fff;text-decoration:none;margin-left:20px;font-weight:600;}
+nav a{
+  color:#fff;
+  text-decoration:none;
+  margin-left:20px;
+}
+
+nav a.active{
+  font-weight:700;
+}
 
 /* CARD */
 .card{
@@ -75,16 +109,12 @@ nav a{color:#fff;text-decoration:none;margin-left:20px;font-weight:600;}
   border:1px solid rgba(255,255,255,0.3);
   padding:60px 40px;
   text-align:center;
-  animation:updown 6s infinite ease-in-out;
   z-index:2;
 }
 
-@keyframes updown{
-  0%,100%{transform:translateY(0);}
-  50%{transform:translateY(-15px);}
-}
-
+/* BUTTON */
 .invite-btn{
+  margin-top:20px;
   padding:20px 40px;
   font-size:1.5rem;
   background:linear-gradient(135deg,#ff6ec4,#7873f5);
@@ -102,7 +132,8 @@ nav a{color:#fff;text-decoration:none;margin-left:20px;font-weight:600;}
   display:none;
   justify-content:center;
   align-items:center;
-  background:rgba(0,0,0,0.3);
+  background:rgba(0,0,0,0.4);
+  z-index:999;
 }
 
 .modal{
@@ -110,29 +141,27 @@ nav a{color:#fff;text-decoration:none;margin-left:20px;font-weight:600;}
   backdrop-filter:blur(20px);
   border-radius:20px;
   padding:30px;
-  text-align:center;
-  animation:pop 0.3s;
 }
 
 .close-btn{
-  margin-top:15px;
+  margin-top:10px;
   padding:10px 20px;
+  background:linear-gradient(135deg,#ff6ec4,#7873f5);
   border:none;
   border-radius:10px;
-  background:linear-gradient(135deg,#ff6ec4,#7873f5);
   color:#fff;
   cursor:pointer;
-}
-
-@keyframes pop{
-  from{transform:scale(0.8);opacity:0;}
-  to{transform:scale(1);opacity:1;}
 }
 </style>
 </head>
 
 <body>
 
+<!-- ONDE -->
+<div class="wave"></div>
+<div class="wave wave2"></div>
+
+<!-- PARTICELLE -->
 <script>
 for(let i=0;i<40;i++){
  let p=document.createElement("div");
@@ -151,7 +180,7 @@ for(let i=0;i<40;i++){
 
 <div class="card">
 <h1>AmicoChill Bot</h1>
-<p>Un bot Discord creato per rendere le tue chat più divertenti e interattive.</p>
+<p>Un bot Discord creato per rendere le chat più divertenti.</p>
 <button class="invite-btn" id="open">Invita Bot</button>
 </div>
 
@@ -172,7 +201,8 @@ const invite=document.getElementById('invite');
 
 open.onclick=()=>modal.style.display="flex";
 check.onchange=()=>invite.disabled=!check.checked;
-invite.onclick=()=>window.open("https://discord.com/oauth2/authorize?client_id=1479189696893419663&permissions=8&scope=bot");
+
+invite.onclick=()=>window.open("https://discord.com/oauth2/authorize?client_id=1479189696893419663&permissions=8&integration_type=0&scope=bot+applications.commands","_blank");
 </script>
 
 </body>
