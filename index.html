@@ -6,7 +6,7 @@
 
 <title>AmicoChill Bot</title>
 
-<!-- 🔥 META OG (EMBED DISCORD) -->
+<!-- 🟦 META OG -->
 <meta property="og:title" content="AmicoChill Bot">
 <meta property="og:description" content="Il bot Discord perfetto per rendere le chat più divertenti e interattive.">
 <meta property="og:image" content="https://i.imgur.com/7yUvePI.png">
@@ -29,21 +29,17 @@ body{
   position:relative;
 }
 
-/* 🌊 ONDE SVG */
+/* 🌊 ONDE */
 .wave{
   position:absolute;
   bottom:0;
   width:200%;
   height:200px;
-  background: url('https://svgshare.com/i/uYb.svg') repeat-x;
-  animation: waveMove 10s linear infinite;
+  background:url('https://svgshare.com/i/uYb.svg') repeat-x;
+  animation:waveMove 10s linear infinite;
   opacity:0.3;
 }
-
-.wave2{
-  animation-duration:15s;
-  opacity:0.2;
-}
+.wave2{animation-duration:15s;opacity:0.2;}
 
 @keyframes waveMove{
   from{transform:translateX(0);}
@@ -63,7 +59,12 @@ body::before,body::after{
 body::before{background:#ff6ec4;top:10%;left:10%;}
 body::after{background:#7873f5;bottom:10%;right:10%;}
 
-/* PARTICELLE */
+@keyframes move{
+  from{transform:translate(0,0);}
+  to{transform:translate(40px,-40px);}
+}
+
+/* ✨ PARTICELLE */
 .particle{
   position:absolute;
   width:6px;height:6px;
@@ -112,7 +113,7 @@ nav a.active{
   z-index:2;
 }
 
-/* BUTTON */
+/* BOTTONE */
 .invite-btn{
   margin-top:20px;
   padding:20px 40px;
@@ -124,7 +125,7 @@ nav a.active{
   cursor:pointer;
 }
 
-/* MODAL */
+/* MODALE */
 .modal-bg{
   position:fixed;
   top:0;left:0;
@@ -133,6 +134,7 @@ nav a.active{
   justify-content:center;
   align-items:center;
   background:rgba(0,0,0,0.4);
+  backdrop-filter:blur(5px);
   z-index:999;
 }
 
@@ -141,27 +143,61 @@ nav a.active{
   backdrop-filter:blur(20px);
   border-radius:20px;
   padding:30px;
+  width:90%;
+  max-width:350px;
+  text-align:center;
 }
 
-.close-btn{
-  margin-top:10px;
-  padding:10px 20px;
-  background:linear-gradient(135deg,#ff6ec4,#7873f5);
-  border:none;
-  border-radius:10px;
-  color:#fff;
+/* ✔ CHECKBOX GRANDE */
+.check-container{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin:25px 0;
   cursor:pointer;
+  font-size:1.1rem;
+}
+
+.check-container input{
+  width:22px;
+  height:22px;
+}
+
+/* 💎 CONTINUA */
+.continue-btn{
+  width:100%;
+  padding:15px;
+  font-size:1.2rem;
+  font-weight:bold;
+  color:#fff;
+
+  background:rgba(255,255,255,0.1);
+  backdrop-filter:blur(15px);
+  border-radius:15px;
+  border:1px solid rgba(255,255,255,0.3);
+
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.continue-btn:hover{
+  transform:scale(1.05);
+  background:rgba(255,255,255,0.2);
+}
+
+.continue-btn:disabled{
+  opacity:0.5;
 }
 </style>
 </head>
 
 <body>
 
-<!-- ONDE -->
+<!-- 🌊 ONDE -->
 <div class="wave"></div>
 <div class="wave wave2"></div>
 
-<!-- PARTICELLE -->
+<!-- ✨ PARTICELLE -->
 <script>
 for(let i=0;i<40;i++){
  let p=document.createElement("div");
@@ -180,16 +216,23 @@ for(let i=0;i<40;i++){
 
 <div class="card">
 <h1>AmicoChill Bot</h1>
-<p>Un bot Discord creato per rendere le chat più divertenti.</p>
+<p>Un bot Discord creato per rendere le tue chat più divertenti.</p>
 <button class="invite-btn" id="open">Invita Bot</button>
 </div>
 
+<!-- 💎 MODALE NUOVA -->
 <div class="modal-bg" id="modal">
 <div class="modal">
+
 <h2>Invita il Bot</h2>
-<label><input type="checkbox" id="check"> Accetto termini</label><br>
-<button id="invite" disabled>Continua</button><br>
-<button class="close-btn" onclick="modal.style.display='none'">Chiudi</button>
+
+<label class="check-container">
+<input type="checkbox" id="check">
+<span>Accetto i termini e la privacy</span>
+</label>
+
+<button id="invite" class="continue-btn" disabled>Continua</button>
+
 </div>
 </div>
 
@@ -200,9 +243,18 @@ const check=document.getElementById('check');
 const invite=document.getElementById('invite');
 
 open.onclick=()=>modal.style.display="flex";
+
 check.onchange=()=>invite.disabled=!check.checked;
 
-invite.onclick=()=>window.open("https://discord.com/oauth2/authorize?client_id=1479189696893419663&permissions=8&integration_type=0&scope=bot+applications.commands","_blank");
+invite.onclick=()=>window.open(
+"https://discord.com/oauth2/authorize?client_id=1479189696893419663&permissions=8&integration_type=0&scope=bot+applications.commands",
+"_blank"
+);
+
+/* chiudi clic fuori */
+modal.onclick=(e)=>{
+ if(e.target===modal) modal.style.display="none";
+};
 </script>
 
 </body>
