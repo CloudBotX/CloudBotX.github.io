@@ -20,7 +20,7 @@ body{
   overflow-x:hidden;
 }
 
-/* LUCI */
+/* 🌊 LUCI */
 body::before,body::after{
   content:"";
   position:absolute;
@@ -28,7 +28,8 @@ body::before,body::after{
   border-radius:50%;
   filter:blur(120px);
   opacity:0.5;
-  animation:move 10s infinite alternate;
+  animation:move 10s infinite alternate ease-in-out;
+  z-index:0;
 }
 body::before{background:#ff6ec4;top:10%;left:10%;}
 body::after{background:#7873f5;bottom:10%;right:10%;}
@@ -38,7 +39,7 @@ body::after{background:#7873f5;bottom:10%;right:10%;}
   to{transform:translate(40px,-40px);}
 }
 
-/* PARTICELLE */
+/* ✨ PARTICELLE */
 .particle{
   position:absolute;
   width:6px;height:6px;
@@ -46,15 +47,15 @@ body::after{background:#7873f5;bottom:10%;right:10%;}
   border-radius:50%;
   opacity:0;
   animation:float 6s infinite;
+  z-index:0;
 }
-
 @keyframes float{
   0%{opacity:0;}
   50%{opacity:0.8;}
   100%{opacity:0;transform:translateY(-100px);}
 }
 
-/* NAV */
+/* NAVBAR */
 nav{
   width:100%;
   display:flex;
@@ -65,11 +66,45 @@ nav{
   z-index:2;
 }
 
-h1{margin-top:60px;font-size:3rem;z-index:2;}
-.description{margin-top:20px;max-width:800px;text-align:center;z-index:2;}
+nav a{
+  color:#fff;
+  text-decoration:none;
+  margin-left:20px;
+  font-weight:600;
+  padding:8px 18px;
+  border-radius:20px;
+  transition: all 0.3s;
+}
 
+nav a:hover{
+  background: rgba(255,255,255,0.2);
+}
+
+/* bottone attivo */
+nav a.active{
+  background:#fff;
+  color:#333;
+}
+
+/* CONTENUTO */
+h1{
+  margin-top:60px;
+  font-size:3rem;
+  z-index:2;
+}
+
+.description{
+  margin-top:20px;
+  max-width:800px;
+  text-align:center;
+  font-size:1.2rem;
+  z-index:2;
+}
+
+/* CARD */
 .lang-container{
-  display:flex;flex-wrap:wrap;
+  display:flex;
+  flex-wrap:wrap;
   justify-content:center;
   gap:25px;
   margin-top:40px;
@@ -81,17 +116,54 @@ h1{margin-top:60px;font-size:3rem;z-index:2;}
   background:rgba(255,255,255,0.1);
   backdrop-filter:blur(15px);
   border-radius:15px;
-  display:flex;justify-content:center;align-items:center;
+  border:1px solid rgba(255,255,255,0.3);
+  display:flex;
+  justify-content:center;
+  align-items:center;
   cursor:pointer;
+  font-weight:bold;
+  transition: all 0.3s;
 }
 
-/* MODAL */
+.lang-card:hover{
+  transform:translateY(-10px) scale(1.05);
+}
+
+/* 💎 DISCORD BUTTON */
+.discord-btn{
+  margin-top:30px;
+  padding:15px 40px;
+  font-size:1.3rem;
+  font-weight:bold;
+  color:#fff;
+  text-decoration:none;
+
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(15px);
+  border-radius:15px;
+  border:1px solid rgba(255,255,255,0.3);
+
+  transition: all 0.3s;
+  box-shadow:0 6px 20px rgba(0,0,0,0.2);
+  z-index:2;
+}
+
+.discord-btn:hover{
+  transform:scale(1.05);
+  background: rgba(255,255,255,0.2);
+}
+
+/* 🔥 MODAL FIX */
 .modal-bg{
   position:fixed;
+  top:0;left:0;
   width:100%;height:100%;
   display:none;
   justify-content:center;
   align-items:center;
+  background:rgba(0,0,0,0.4);
+  backdrop-filter:blur(5px);
+  z-index:999;
 }
 
 .modal{
@@ -100,28 +172,43 @@ h1{margin-top:60px;font-size:3rem;z-index:2;}
   border-radius:20px;
   padding:30px;
   text-align:center;
+  z-index:1000;
   animation:pop 0.3s;
 }
 
+/* 🔥 BOTTONE BELLO */
 .close-btn{
-  margin-top:15px;
+  margin-top:20px;
   padding:12px 25px;
   border:none;
   border-radius:12px;
   background:linear-gradient(135deg,#ff6ec4,#7873f5);
   color:#fff;
+  font-weight:bold;
   cursor:pointer;
+  transition: all 0.3s;
+}
+
+.close-btn:hover{
+  transform:scale(1.05);
 }
 
 @keyframes pop{
   from{transform:scale(0.8);opacity:0;}
   to{transform:scale(1);opacity:1;}
 }
+
+/* MOBILE */
+@media(max-width:768px){
+  h1{font-size:2rem;}
+  .lang-card{width:120px;height:70px;}
+}
 </style>
 </head>
 
 <body>
 
+<!-- PARTICELLE -->
 <script>
 for(let i=0;i<40;i++){
  let p=document.createElement("div");
@@ -135,12 +222,15 @@ for(let i=0;i<40;i++){
 
 <nav>
 <div><strong>AmicoChill</strong></div>
-<div><a href="index.html">Home</a></div>
+<div>
+<a href="index.html" class="active">Home</a>
+</div>
 </nav>
 
 <h1>Chi Sono</h1>
+
 <p class="description">
-Ciao! Sono uno sviluppatore appassionato di bot Discord e creazione di texture...
+Ciao! Sono uno sviluppatore appassionato di bot Discord e creazione di texture. Amo sperimentare con il design moderno, animazioni e interfacce interattive. Grazie al mio lavoro è nato il bot <strong>AmicoChill</strong>.
 </p>
 
 <div class="lang-container">
@@ -151,6 +241,12 @@ Ciao! Sono uno sviluppatore appassionato di bot Discord e creazione di texture..
 <div class="lang-card" data-lang="css">CSS</div>
 </div>
 
+<!-- 💎 DISCORD -->
+<a href="https://discord.gg/3VM4jbYk7Y" target="_blank" rel="noopener noreferrer" class="discord-btn">
+Entra nel Discord
+</a>
+
+<!-- MODAL -->
 <div class="modal-bg" id="modal-bg">
 <div class="modal">
 <h2 id="modal-title"></h2>
@@ -161,11 +257,11 @@ Ciao! Sono uno sviluppatore appassionato di bot Discord e creazione di texture..
 
 <script>
 const info={
- python:{title:"Python",desc:"Uso Python per bot Discord"},
- java:{title:"Java",desc:"Applicazioni robuste"},
- javascript:{title:"JS",desc:"Interattività web"},
+ python:{title:"Python",desc:"Uso Python per bot Discord e automazioni"},
+ java:{title:"Java",desc:"Applicazioni robuste e scalabili"},
+ javascript:{title:"JavaScript",desc:"Interattività web"},
  html:{title:"HTML",desc:"Struttura siti"},
- css:{title:"CSS",desc:"Design moderno"}
+ css:{title:"CSS",desc:"Design moderno e animazioni"}
 };
 
 const cards=document.querySelectorAll('.lang-card');
@@ -182,7 +278,13 @@ cards.forEach(c=>{
  };
 });
 
-function closeModal(){modal.style.display="none";}
+function closeModal(){
+ modal.style.display="none";
+}
+
+modal.onclick=(e)=>{
+ if(e.target===modal) closeModal();
+};
 </script>
 
 </body>
