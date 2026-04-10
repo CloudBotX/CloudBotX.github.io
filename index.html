@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AmicoChill Bot</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
 * {margin:0;padding:0;box-sizing:border-box;font-family:'Montserrat',sans-serif;}
 
@@ -16,6 +17,54 @@ body {
   align-items:center;
   color:#fff;
   overflow:hidden;
+  position:relative;
+}
+
+/* 🌊 LUCE ACQUA */
+body::before, body::after {
+  content:"";
+  position:absolute;
+  width:500px;
+  height:500px;
+  border-radius:50%;
+  filter:blur(120px);
+  opacity:0.5;
+  animation: floatLight 10s infinite alternate ease-in-out;
+}
+
+body::before {
+  background:#ff6ec4;
+  top:10%;
+  left:10%;
+}
+
+body::after {
+  background:#7873f5;
+  bottom:10%;
+  right:10%;
+  animation-delay:2s;
+}
+
+/* ✨ PARTICELLE */
+.particle {
+  position:absolute;
+  width:6px;
+  height:6px;
+  background:white;
+  border-radius:50%;
+  opacity:0;
+  animation: sparkle 6s infinite;
+}
+
+@keyframes sparkle {
+  0% {opacity:0; transform:translateY(0);}
+  50% {opacity:0.8;}
+  100% {opacity:0; transform:translateY(-100px);}
+}
+
+@keyframes floatLight {
+  0% {transform:translateY(0) translateX(0);}
+  100% {transform:translateY(-40px) translateX(40px);}
 }
 
 /* Navbar */
@@ -28,14 +77,15 @@ nav {
   padding:20px 40px;
   backdrop-filter:blur(10px);
   background: rgba(255,255,255,0.1);
+  z-index:2;
 }
+
 nav a {
   color:#fff;
   text-decoration:none;
   margin-left:20px;
   font-weight:600;
 }
-nav a:hover {color:#ffd700;}
 
 /* Card */
 .card {
@@ -47,6 +97,7 @@ nav a:hover {color:#ffd700;}
   padding: 60px 40px;
   text-align:center;
   animation: float 6s ease-in-out infinite;
+  z-index:2;
 }
 
 .card h1 {font-size:3rem;margin-bottom:20px;}
@@ -62,21 +113,18 @@ nav a:hover {color:#ffd700;}
   border:none;
   border-radius:15px;
   cursor:pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
-  box-shadow:0 8px 15px rgba(0,0,0,0.2);
-}
-.invite-btn:hover {
-  transform: scale(1.05);
-  box-shadow:0 12px 20px rgba(0,0,0,0.3);
 }
 
-/* Modale */
+@keyframes float {
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-15px);}
+}
+
+/* MODALE */
 .modal-bg {
   position:fixed;
   top:0; left:0;
   width:100%; height:100%;
-  background: rgba(0,0,0,0.4);
-  backdrop-filter:blur(5px);
   display:none;
   justify-content:center;
   align-items:center;
@@ -88,36 +136,25 @@ nav a:hover {color:#ffd700;}
   border-radius:20px;
   border:1px solid rgba(255,255,255,0.3);
   padding:30px;
-  max-width:350px;
   text-align:center;
-  animation: pop 0.3s ease;
 }
 
-.modal h2 {margin-bottom:15px;}
-.modal label {display:block;margin:20px 0;}
-.modal button {
-  margin-top:10px;
-  padding:10px 20px;
-  border:none;
-  border-radius:10px;
-  background: linear-gradient(135deg, #ff6ec4, #7873f5);
-  color:#fff;
-  cursor:pointer;
-}
-.modal button:disabled {opacity:0.5;cursor:not-allowed;}
-
-/* Animazioni */
-@keyframes float {
-  0%,100%{transform:translateY(0);}
-  50%{transform:translateY(-15px);}
-}
-@keyframes pop {
-  0%{transform:scale(0.8);opacity:0;}
-  100%{transform:scale(1);opacity:1;}
-}
 </style>
 </head>
+
 <body>
+
+<!-- PARTICELLE -->
+<script>
+for(let i=0;i<40;i++){
+  let p=document.createElement("div");
+  p.className="particle";
+  p.style.left=Math.random()*100+"%";
+  p.style.top=Math.random()*100+"%";
+  p.style.animationDelay=Math.random()*6+"s";
+  document.body.appendChild(p);
+}
+</script>
 
 <nav>
   <div><strong>AmicoChill</strong></div>
@@ -132,16 +169,12 @@ nav a:hover {color:#ffd700;}
   <button class="invite-btn" id="open">Invita Bot</button>
 </div>
 
-<!-- MODALE -->
 <div class="modal-bg" id="modal">
   <div class="modal">
     <h2>Invita il Bot</h2>
-    <p>Per continuare devi accettare i termini e la privacy.</p>
-    
     <label>
-      <input type="checkbox" id="check"> Accetto termini e privacy
+      <input type="checkbox" id="check"> Accetto termini
     </label>
-
     <button id="invite" disabled>Continua</button>
   </div>
 </div>
@@ -152,18 +185,9 @@ const open = document.getElementById('open');
 const check = document.getElementById('check');
 const invite = document.getElementById('invite');
 
-// Apri popup
 open.onclick = () => modal.style.display = "flex";
-
-// Abilita bottone
-check.onchange = () => {
-  invite.disabled = !check.checked;
-};
-
-// Invito bot
-invite.onclick = () => {
-  window.open("https://discord.com/oauth2/authorize?client_id=1479189696893419663&permissions=8&integration_type=0&scope=bot+applications.commands", "_blank");
-};
+check.onchange = () => invite.disabled = !check.checked;
+invite.onclick = () => window.open("https://discord.com/oauth2/authorize?client_id=1479189696893419663&permissions=8&scope=bot");
 </script>
 
 </body>
