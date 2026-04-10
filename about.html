@@ -7,10 +7,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-* {margin:0;padding:0;box-sizing:border-box;font-family:'Montserrat',sans-serif;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Montserrat',sans-serif;}
 
-body {
-  background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+body{
+  background:linear-gradient(135deg,#a1c4fd,#c2e9fb);
   color:#fff;
   min-height:100vh;
   display:flex;
@@ -20,254 +20,169 @@ body {
   overflow-x:hidden;
 }
 
-/* 🌊 LUCI FLUIDE */
-body::before, body::after {
+/* LUCI */
+body::before,body::after{
   content:"";
   position:absolute;
-  width:500px;
-  height:500px;
+  width:500px;height:500px;
   border-radius:50%;
   filter:blur(120px);
   opacity:0.5;
-  animation: floatLight 10s infinite alternate ease-in-out;
-  z-index:0;
+  animation:move 10s infinite alternate;
+}
+body::before{background:#ff6ec4;top:10%;left:10%;}
+body::after{background:#7873f5;bottom:10%;right:10%;}
+
+@keyframes move{
+  from{transform:translate(0,0);}
+  to{transform:translate(40px,-40px);}
 }
 
-body::before {
-  background:#ff6ec4;
-  top:10%;
-  left:10%;
-}
-
-body::after {
-  background:#7873f5;
-  bottom:10%;
-  right:10%;
-  animation-delay:2s;
-}
-
-@keyframes floatLight {
-  0% {transform:translate(0,0);}
-  100% {transform:translate(40px,-40px);}
-}
-
-/* ✨ PARTICELLE */
-.particle {
+/* PARTICELLE */
+.particle{
   position:absolute;
-  width:6px;
-  height:6px;
-  background:white;
+  width:6px;height:6px;
+  background:#fff;
   border-radius:50%;
   opacity:0;
-  animation: sparkle 6s infinite;
-  z-index:0;
+  animation:float 6s infinite;
 }
 
-@keyframes sparkle {
-  0% {opacity:0; transform:translateY(0);}
-  50% {opacity:0.8;}
-  100% {opacity:0; transform:translateY(-100px);}
+@keyframes float{
+  0%{opacity:0;}
+  50%{opacity:0.8;}
+  100%{opacity:0;transform:translateY(-100px);}
 }
 
-/* Navbar */
-nav {
+/* NAV */
+nav{
   width:100%;
   display:flex;
   justify-content:space-between;
   padding:20px 40px;
   backdrop-filter:blur(10px);
-  background: rgba(255,255,255,0.1);
-  position:relative;
+  background:rgba(255,255,255,0.1);
   z-index:2;
 }
 
-nav a {
-  color:#fff;
-  text-decoration:none;
-  margin-left:20px;
-  font-weight:600;
-  transition: color 0.3s;
-}
-nav a:hover {color:#ffd700;}
+h1{margin-top:60px;font-size:3rem;z-index:2;}
+.description{margin-top:20px;max-width:800px;text-align:center;z-index:2;}
 
-/* Titolo */
-h1 {
-  margin-top:60px;
-  font-size:3rem;
-  text-align:center;
-  animation: fadeIn 1s ease forwards;
-  z-index:2;
-}
-
-p.description {
-  margin-top:20px;
-  max-width:800px;
-  text-align:center;
-  font-size:1.2rem;
-  line-height:1.6;
-  animation: fadeIn 1.2s ease forwards;
-  z-index:2;
-}
-
-/* Cards */
-.lang-container {
-  display:flex;
-  flex-wrap:wrap;
+.lang-container{
+  display:flex;flex-wrap:wrap;
   justify-content:center;
   gap:25px;
   margin-top:40px;
   z-index:2;
 }
 
-.lang-card {
-  width:150px;
-  height:80px;
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(15px);
+.lang-card{
+  width:150px;height:80px;
+  background:rgba(255,255,255,0.1);
+  backdrop-filter:blur(15px);
   border-radius:15px;
-  border:1px solid rgba(255,255,255,0.3);
-  display:flex;
-  justify-content:center;
-  align-items:center;
+  display:flex;justify-content:center;align-items:center;
   cursor:pointer;
-  font-weight:bold;
-  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.lang-card:hover {
-  transform: translateY(-10px) scale(1.05);
-  box-shadow:0 12px 25px rgba(0,0,0,0.3);
-}
-
-/* Discord */
-.discord-btn {
-  margin-top:30px;
-  padding:15px 40px;
-  font-size:1.3rem;
-  font-weight:bold;
-  color:#fff;
-  background: rgba(114,137,218,0.3);
-  backdrop-filter: blur(15px);
-  border-radius:15px;
-  border:1px solid rgba(255,255,255,0.3);
-  cursor:pointer;
-  text-decoration:none;
-  z-index:2;
-}
-
-/* Modal */
-.modal-bg {
+/* MODAL */
+.modal-bg{
   position:fixed;
-  top:0; left:0;
-  width:100%; height:100%;
+  width:100%;height:100%;
   display:none;
   justify-content:center;
   align-items:center;
-  z-index:100;
 }
 
-.modal {
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(20px);
+.modal{
+  background:rgba(255,255,255,0.1);
+  backdrop-filter:blur(20px);
   border-radius:20px;
-  border:1px solid rgba(255,255,255,0.3);
   padding:30px;
   text-align:center;
+  animation:pop 0.3s;
 }
 
-/* Animazioni */
-@keyframes fadeIn {
-  from {opacity:0; transform:translateY(-20px);}
-  to {opacity:1; transform:translateY(0);}
+.close-btn{
+  margin-top:15px;
+  padding:12px 25px;
+  border:none;
+  border-radius:12px;
+  background:linear-gradient(135deg,#ff6ec4,#7873f5);
+  color:#fff;
+  cursor:pointer;
 }
 
-/* 📱 MOBILE */
-@media (max-width:768px){
-  h1 {font-size:2rem;}
-  .lang-card {width:120px;height:70px;}
+@keyframes pop{
+  from{transform:scale(0.8);opacity:0;}
+  to{transform:scale(1);opacity:1;}
 }
-
 </style>
 </head>
 
 <body>
 
-<!-- PARTICELLE -->
 <script>
 for(let i=0;i<40;i++){
-  let p=document.createElement("div");
-  p.className="particle";
-  p.style.left=Math.random()*100+"%";
-  p.style.top=Math.random()*100+"%";
-  p.style.animationDelay=Math.random()*6+"s";
-  document.body.appendChild(p);
+ let p=document.createElement("div");
+ p.className="particle";
+ p.style.left=Math.random()*100+"%";
+ p.style.top=Math.random()*100+"%";
+ p.style.animationDelay=Math.random()*6+"s";
+ document.body.appendChild(p);
 }
 </script>
 
 <nav>
-  <div><strong>AmicoChill</strong></div>
-  <div>
-    <a href="index.html">Home</a>
-  </div>
+<div><strong>AmicoChill</strong></div>
+<div><a href="index.html">Home</a></div>
 </nav>
 
 <h1>Chi Sono</h1>
-
 <p class="description">
-Ciao! Sono uno sviluppatore appassionato di bot Discord e creazione di texture. Amo sperimentare con il design moderno, animazioni e interfacce interattive. Grazie al mio lavoro è nato il bot <strong>AmicoChill</strong>, progettato per rendere le chat più divertenti e dinamiche.
+Ciao! Sono uno sviluppatore appassionato di bot Discord e creazione di texture...
 </p>
 
 <div class="lang-container">
-  <div class="lang-card" data-lang="python">Python</div>
-  <div class="lang-card" data-lang="java">Java</div>
-  <div class="lang-card" data-lang="javascript">JavaScript</div>
-  <div class="lang-card" data-lang="html">HTML</div>
-  <div class="lang-card" data-lang="css">CSS</div>
+<div class="lang-card" data-lang="python">Python</div>
+<div class="lang-card" data-lang="java">Java</div>
+<div class="lang-card" data-lang="javascript">JavaScript</div>
+<div class="lang-card" data-lang="html">HTML</div>
+<div class="lang-card" data-lang="css">CSS</div>
 </div>
 
-<a href="https://discord.gg/3VM4jbYk7Y" target="_blank" rel="noopener noreferrer" class="discord-btn">
-  Entra nel Discord
-</a>
-
-<!-- MODAL -->
 <div class="modal-bg" id="modal-bg">
-  <div class="modal">
-    <h2 id="modal-title"></h2>
-    <p id="modal-desc"></p>
-    <button onclick="closeModal()">Chiudi</button>
-  </div>
+<div class="modal">
+<h2 id="modal-title"></h2>
+<p id="modal-desc"></p>
+<button class="close-btn" onclick="closeModal()">Chiudi</button>
+</div>
 </div>
 
 <script>
-const langInfo = {
-  python: {title:"Python", desc:"Uso Python principalmente per bot Discord, automazioni e script."},
-  java: {title:"Java", desc:"Java è perfetto per applicazioni robuste e scalabili."},
-  javascript: {title:"JavaScript", desc:"JavaScript è il cuore dell’interattività web."},
-  html: {title:"HTML", desc:"HTML è la struttura base dei miei siti."},
-  css: {title:"CSS", desc:"CSS dà vita ai miei progetti con design moderni."}
+const info={
+ python:{title:"Python",desc:"Uso Python per bot Discord"},
+ java:{title:"Java",desc:"Applicazioni robuste"},
+ javascript:{title:"JS",desc:"Interattività web"},
+ html:{title:"HTML",desc:"Struttura siti"},
+ css:{title:"CSS",desc:"Design moderno"}
 };
 
-const cards = document.querySelectorAll('.lang-card');
-const modalBg = document.getElementById('modal-bg');
-const modalTitle = document.getElementById('modal-title');
-const modalDesc = document.getElementById('modal-desc');
+const cards=document.querySelectorAll('.lang-card');
+const modal=document.getElementById('modal-bg');
+const t=document.getElementById('modal-title');
+const d=document.getElementById('modal-desc');
 
-cards.forEach(card => {
-  card.onclick = () => {
-    const lang = card.dataset.lang;
-    modalTitle.textContent = langInfo[lang].title;
-    modalDesc.textContent = langInfo[lang].desc;
-    modalBg.style.display = 'flex';
-  };
+cards.forEach(c=>{
+ c.onclick=()=>{
+  const k=c.dataset.lang;
+  t.textContent=info[k].title;
+  d.textContent=info[k].desc;
+  modal.style.display="flex";
+ };
 });
 
-function closeModal(){
-  modalBg.style.display = 'none';
-}
-
-modalBg.onclick = (e) => {
-  if(e.target === modalBg) closeModal();
-};
+function closeModal(){modal.style.display="none";}
 </script>
 
 </body>
